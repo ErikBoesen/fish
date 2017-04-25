@@ -49,4 +49,4 @@ def facebook_store_cred():
 
 
 if __name__ == '__main__':
-    app.run(port=2023, debug=True)  # debug=False)
+    app.run(host='0.0.0.0', port=2023, debug=False)
